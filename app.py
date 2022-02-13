@@ -1,8 +1,10 @@
 from flask import Flask,render_template,redirect,request
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+# from flask_bootstrap import Bootstrap
 
 app = Flask(__name__)
+# Bootstrap(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///posts.db'
 db = SQLAlchemy(app)
 
@@ -41,7 +43,7 @@ def posts():
         return redirect('/posts')
     else:
         all_posts = CodeSpeedyBlog.query.order_by(CodeSpeedyBlog.posted_on).all()
-        return render_template('posts.html', posts=all_posts)
+        return render_template('post.html', posts=all_posts)
 
 @app.route('/posts/new', methods=['GET', 'POST'])
 def new_post():
